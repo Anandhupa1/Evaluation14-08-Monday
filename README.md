@@ -125,6 +125,103 @@ response : 202 | deleted data will be returned with data key.
  
  ``
 
+<br/>
 
 
+## Booking Route 
+<br/>
 
+# POST /api/booking 
+This endpoint should allow the user to book flights.
+This route is protected , ie you need to have the token in headers 
+Also you need to provide flightId in the request body as a key 
+``
+{
+ "flightId":"64da1cb8d4fc2dd8aef8d195"
+}
+
+``
+response : 201 successfully booked 
+``
+{
+  "user": "64da0ce2574dc04e76b82ca3",
+  "flight": "64da1c5ec4ccb0a887a7f39d",
+  "_id": "64da267efc37d1125bdd9f17",
+  "__v": 0
+}
+``
+
+response :409 | error : conflict
+``
+{
+  "message": "you have already booked this flight"
+}
+``
+
+## GET /api/booking
+user will get All bookings with flight details
+response :200
+
+``
+[
+  
+  {
+    "_id": "64da267efc37d1125bdd9f17",
+    "user": "64da0ce2574dc04e76b82ca3",
+    "flight": "64da1c5ec4ccb0a887a7f39d",
+    "__v": 0,
+    "flightDetails": [
+      {
+        "_id": "64da1c5ec4ccb0a887a7f39d",
+        "airline": "one airlines1",
+        "flightNo": "1",
+        "departure": "111",
+        "arrival": "111",
+        "departureTime": "2015-03-25T00:00:00.000Z",
+        "arrivalTime": "2015-03-26T00:00:00.000Z",
+        "seats": 100,
+        "price": 2000,
+        "__v": 0
+      }
+    ]
+  }
+
+]``
+## GET /api/booking
+admin will get All bookings with userinfo and  flight details
+response :200
+
+``
+[
+  
+  {
+    "_id": "64da2588fc37d1125bdd9f04",
+    "user": "64da0ce2574dc04e76b82ca3",
+    "flight": "64da1cb8d4fc2dd8aef8d195",
+    "__v": 0,
+    "flightDetails": [
+      {
+        "_id": "64da1cb8d4fc2dd8aef8d195",
+        "airline": "one airlines1",
+        "flightNo": "2",
+        "departure": "111",
+        "arrival": "111",
+        "departureTime": "2015-03-25T00:00:00.000Z",
+        "arrivalTime": "2015-03-26T00:00:00.000Z",
+        "seats": 100,
+        "price": 2000,
+        "__v": 0
+      }
+    ],
+    "userDetails": [
+      {
+        "_id": "64da0ce2574dc04e76b82ca3",
+        "name": "anandhu",
+        "email": "anandhupa131@gmail.com",
+        "password": "$2b$10$oSYOM/NhmCvoQO6AGFtdbuFSk7XjakEshb3La7pV8ywtu1j0J2l1i",
+        "__v": 0
+      }
+    ]
+  },
+
+]``
