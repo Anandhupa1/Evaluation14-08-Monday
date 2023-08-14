@@ -1,13 +1,16 @@
 const express = require("express");
 const app = express();
 const connection = require("./configs/mongoose.connection");
+const {  authenticateRouter } = require("./Routes/authenticate");
+const { authenticateUser } = require("./Middlewares/authenticateUser");
+const { flightRouter } = require("./Routes/flights");
 
 
+app.use(express.json())
 
-
-app.get("/",async(req,res)=>{
+app.get("/",authenticateUser,async(req,res)=>{
     try {
-       res.send("home page")
+       res.send(req.body)
     } catch (error) {
         console.error(error)
     }
@@ -15,8 +18,8 @@ app.get("/",async(req,res)=>{
 
 
 
-
-
+app.use("/api",authenticateRouter)
+app.use("/api/flights",flightRouter)
 
 
 
