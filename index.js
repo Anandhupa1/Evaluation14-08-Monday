@@ -4,6 +4,7 @@ const connection = require("./configs/mongoose.connection");
 const {  authenticateRouter } = require("./Routes/authenticate");
 const { authenticateUser } = require("./Middlewares/authenticateUser");
 const { flightRouter } = require("./Routes/flights");
+const { bookingRouter } = require("./Routes/booking");
 
 
 app.use(express.json())
@@ -20,7 +21,7 @@ app.get("/",authenticateUser,async(req,res)=>{
 
 app.use("/api",authenticateRouter)
 app.use("/api/flights",flightRouter)
-
+app.use("/api/booking",bookingRouter)
 
 
 app.listen(4000,async(req,res)=>{
