@@ -13,6 +13,14 @@ app.get("/",async(req,res)=>{
     }
 })
 
+app.get("/dummy",async(req,res)=>{
+    try {
+       res.send("dummy")
+    } catch (error) {
+        console.error(error)
+    }
+})
+
 
 
 
