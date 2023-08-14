@@ -11,7 +11,7 @@ const { dashboardRouter } = require("./Routes/dashboard");
 
 app.use(express.json())
 
-app.get("/",authenticateUser,async(req,res)=>{
+app.get("/",async(req,res)=>{
     try {
        res.send(req.body)
     } catch (error) {
